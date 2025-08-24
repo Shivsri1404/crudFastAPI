@@ -4,8 +4,8 @@ import logging
 logging.basicConfig(level=logging.INFO)
 _logger = logging.getLogger(__name__)
 
-def create_user(db: Session, user: schemas.UserCreate):
-    db_user = models.User(name=user.name, email=user.email)
+def create_user(db: Session, user: schemas.UserCreate, user_image_path: str = None):
+    db_user = models.User(name=user.name, email=user.email, user_image_path=user_image_path)
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
